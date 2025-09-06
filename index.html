@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zbond Blast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 70px; /* Untuk menghindari konten tertutup footer */
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #00a697, #00c4b3);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .main-content {
+            padding: 10px 0;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .menu-button {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        
+        .menu-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .menu-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-button i {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .hotel {
+            color: #00a697;
+        }
+        
+        .food {
+            color: #00a697;
+        }
+        
+        .travel {
+            color: #00a697;
+        }
+        
+        .app-info {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+        
+        .app-desc {
+            font-size: 14px;
+            color: #555;
+            text-align: center;
+            line-height: 1.5;
+        }
+        
+        footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+        
+        .footer-content {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #00a697;
+        }
+        
+        .copyright {
+            font-size: 12px;
+            color: #b2bec3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">Zbond Blast</div>
+            <div class="tagline">Your Travel Companion</div>
+        </header>
+        
+        <div class="main-content">
+            <div class="button-grid">
+                <a href="#" class="menu-button" id="hotelBtn">
+                    <i class="fas fa-hotel hotel"></i>
+                    <span>Hotel</span>
+                </a>
+                <a href="#" class="menu-button" id="foodBtn">
+                    <i class="fas fa-utensils food"></i>
+                    <span>Food</span>
+                </a>
+                <a href="#" class="menu-button" id="travelBtn">
+                    <i class="fas fa-plane travel"></i>
+                    <span>Travel</span>
+                </a>
+            </div>
+            
+            <div class="app-info">
+                <div class="section-title">Zbond Blast</div>
+                <div class="app-desc">
+                    Halo Admin Zbond, Aplikasi ini adalah aplkkasi untuk kirim penawaran kepada calon merchant Zbond dengan mudah dan cepat.
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">Zbond Blast</div>
+                <div class="copyright">© 2023 Zbond Blast. All rights reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk menangani klik tombol
+        document.getElementById('hotelBtn').addEventListener('click', function() {
+            window.location.href = 'form-hotel.html';
+        });
+        
+        document.getElementById('foodBtn').addEventListener('click', function() {
+            window.location.href = 'form-food.html';
+        });
+        
+        document.getElementById('travelBtn').addEventListener('click', function() {
+            window.location.href = 'form-travel.html';
+        });
+    </script>
+</body>
+</html>
