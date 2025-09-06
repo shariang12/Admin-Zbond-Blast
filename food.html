@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Merchant Food - Zbond Blast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+            padding-bottom: 70px;
+        }
+        
+        .container {
+            max-width: 100%;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #00a697, #00c4b3);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        
+        .back-button {
+            position: absolute;
+            left: 15px;
+            top: 20px;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .main-content {
+            padding: 10px 0;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            color: #333;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            border-color: #00a697;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(0, 166, 151, 0.2);
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #00a697, #00c4b3);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .submit-button:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background: #2d3436;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+        }
+        
+        .footer-content {
+            max-width: 480px;
+            margin: 0 auto;
+        }
+        
+        .footer-logo {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #00a697;
+        }
+        
+        .copyright {
+            font-size: 12px;
+            color: #b2bec3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i>
+            </a>
+            <div class="logo">Zbond Blast</div>
+            <div class="tagline">Formulir Merchant Food</div>
+        </header>
+        
+        <div class="main-content">
+            <div class="form-container">
+                <div class="form-title">Masukkan Data Merchant Food</div>
+                
+                <div class="form-group">
+                    <label for="merchantName">Nama Restoran/Rumah Makan</label>
+                    <input type="text" id="merchantName" placeholder="Masukkan nama restoran/rumah makan">
+                </div>
+                
+                <div class="form-group">
+                    <label for="whatsappNumber">Nomor WhatsApp Merchant</label>
+                    <input type="tel" id="whatsappNumber" placeholder="Contoh: 628123456789">
+                </div>
+                
+                <button class="submit-button" id="sendButton">
+                    <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-logo">Zbond Blast</div>
+                <div class="copyright">© 2023 Zbond Blast. All rights reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('sendButton').addEventListener('click', function() {
+            const merchantName = document.getElementById('merchantName').value.trim();
+            const whatsappNumber = document.getElementById('whatsappNumber').value.trim();
+            
+            if (!merchantName) {
+                alert('Mohon masukkan nama restoran/rumah makan');
+                return;
+            }
+            
+            if (!whatsappNumber) {
+                alert('Mohon masukkan nomor WhatsApp');
+                return;
+            }
+            
+            // Format nomor WhatsApp (hilangkan karakter selain angka)
+            const formattedNumber = whatsappNumber.replace(/\D/g, '');
+            
+            // Pesan yang akan dikirim
+            const message = `ZBOND – Aplikasi Ojek Online & Layanan Digital Situbondo
+
+Kepada Yth,
+Pimpinan/Manajer ${merchantName}
+di Tempat
+
+Dengan hormat,
+
+Kami dari ZBOND, sebuah aplikasi transportasi online dan layanan digital berbasis komunitas di Situbondo, saat ini sedang dalam tahap pengujian Playstore dan segera akan tersedia secara resmi di Google Playstore.
+
+Salah satu fitur unggulan kami adalah Layanan Pesan Makanan, yang bertujuan mendukung sektor kuliner dan usaha makanan di Situbondo. Sehubungan dengan itu, kami mengundang ${merchantName} untuk bergabung menjadi Mitra Merchant Food ZBOND sejak tahap awal.
+
+
+---
+
+🎯 Keuntungan Menjadi Mitra Merchant Food ZBOND
+
+1. Gratis Pendaftaran Mitra – tanpa biaya pendaftaran maupun biaya bulanan/tahunan.
+
+
+2. Merchant Mengatur Sendiri Menu & Harga – pihak merchant bebas memasukkan menu, paket, dan harga melalui akun merchant ZBOND.
+
+
+3. Pembayaran Langsung ke Merchant – pelanggan membayar langsung ke pihak merchant sesuai harga yang ditetapkan.
+
+
+4. Komisi Ringan & Otomatis – ZBOND hanya mengambil 5% dari setiap transaksi, yang otomatis dipotong dari saldo merchant saat transaksi terjadi.
+
+
+5. Laporan Transaksi Real-Time – seluruh transaksi dapat dipantau melalui akun merchant di aplikasi ZBOND.
+
+
+6. Promosi Gratis – merchant tampil di aplikasi ZBOND dan berpotensi menjangkau lebih banyak pelanggan lokal.
+
+
+
+
+---
+
+⚙️ Skema Kerja Sama
+
+Pendaftaran mitra gratis.
+
+Merchant memasukkan sendiri menu & harga melalui akun merchant.
+
+Pembayaran diterima langsung oleh merchant.
+
+Komisi 5% otomatis dipotong dari saldo merchant saat transaksi berhasil.
+
+Laporan transaksi tersedia secara transparan dan real-time.
+
+
+
+---
+
+📲 Cara Download Aplikasi ZBOND (Tahap Pengujian Playstore)
+
+Karena Aplikasi ZBOND masih dalam tahap pengujian Playstore, silakan ikuti langkah berikut untuk mendownload:
+
+1. Kirimkan email aktif Anda ke Admin ZBOND.
+(Admin akan membalas email setelah akun Anda didaftarkan ke sistem uji coba).
+
+
+2. Setelah didaftarkan, klik link berikut untuk download:
+👉 Download ZBOND via Playstore
+
+
+3. Instal aplikasi, dan proses selesai ✅
+
+
+
+
+---
+
+Kami yakin kerja sama ini akan memberikan keuntungan bersama serta membantu meningkatkan penjualan dan pemasaran merchant food Anda.
+
+Apabila Bapak/Ibu berkenan, tim kami siap melakukan presentasi dan membantu registrasi merchant ke dalam aplikasi ZBOND.
+
+Atas perhatian dan kerja samanya, kami ucapkan terima kasih.
+
+Hormat kami,
+Tim Manajemen ZBOND
+Situbondo`;
+            
+            // Encode pesan untuk URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Buat link WhatsApp
+            const whatsappURL = `https://wa.me/${formattedNumber}?text=${encodedMessage}`;
+            
+            // Buka WhatsApp
+            window.open(whatsappURL, '_blank');
+        });
+    </script>
+</body>
+</html>
