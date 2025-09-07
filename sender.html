@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZBond Sender</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        h1 {
+            color: #00a697;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        
+        .subtitle {
+            color: #777;
+            font-size: 14px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+        
+        textarea, input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+        }
+        
+        textarea {
+            min-height: 120px;
+        }
+        
+        .phone-input-container {
+            position: relative;
+        }
+        
+        .add-number-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #00a697;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .add-number-btn:hover {
+            background: #00877a;
+        }
+        
+        .phone-numbers-list {
+            margin-top: 10px;
+        }
+        
+        .phone-number-tag {
+            display: inline-block;
+            background: #e0f2f1;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 5px;
+            font-size: 14px;
+        }
+        
+        .phone-number-tag span {
+            margin-left: 5px;
+            cursor: pointer;
+            color: #d32f2f;
+        }
+        
+        .btn {
+            background-color: #00a697;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #00877a;
+        }
+        
+        .btn:active {
+            transform: scale(0.98);
+        }
+        
+        .info-text {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #999;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ZBond Sender</h1>
+            <p class="subtitle">Kirim pesan WhatsApp Business ke banyak kontak</p>
+        </header>
+        
+        <div class="input-group">
+            <label for="phone-numbers">Nomor Telepon Penerima</label>
+            <div class="phone-input-container">
+                <input type="text" id="phone-input" placeholder="Masukkan nomor telepon (contoh: 628123456789)" />
+                <button class="add-number-btn" id="add-number-btn">+</button>
+            </div>
+            <p class="info-text">Pisahkan dengan koma untuk beberapa nomor, atau gunakan tombol + untuk menambah satu per satu</p>
+            
+            <div class="phone-numbers-list" id="phone-numbers-list"></div>
+        </div>
+        
+        <div class="input-group">
+            <label for="message">Pesan</label>
+            <textarea id="message" placeholder="Tulis pesan yang ingin dikirim"></textarea>
+        </div>
+        
+        <button class="btn" id="send-btn">Kirim</button>
+    </div>
+    
+    <footer>
+        &copy; 2023 ZBond Sender - WhatsApp Business Integration
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone-input');
+            const addNumberBtn = document.getElementById('add-number-btn');
+            const phoneNumbersList = document.getElementById('phone-numbers-list');
+            const messageInput = document.getElementById('message');
+            const sendBtn = document.getElementById('send-btn');
+            
+            let phoneNumbers = [];
+            
+            // Fungsi untuk menambah nomor telepon
+            function addPhoneNumber() {
+                const phoneNumber = phoneInput.value.trim();
+                
+                if (phoneNumber) {
+                    // Memeriksa apakah nomor sudah ada dalam daftar
+                    if (!phoneNumbers.includes(phoneNumber)) {
+                        phoneNumbers.push(phoneNumber);
+                        renderPhoneNumbers();
+                    }
+                    phoneInput.value = '';
+                }
+            }
+            
+            // Fungsi untuk merender daftar nomor telepon
+            function renderPhoneNumbers() {
+                phoneNumbersList.innerHTML = '';
+                
+                phoneNumbers.forEach((number, index) => {
+                    const numberTag = document.createElement('div');
+                    numberTag.className = 'phone-number-tag';
+                    numberTag.innerHTML = `${number} <span onclick="removePhoneNumber(${index})">×</span>`;
+                    phoneNumbersList.appendChild(numberTag);
+                });
+            }
+            
+            // Fungsi untuk menghapus nomor telepon
+            window.removePhoneNumber = function(index) {
+                phoneNumbers.splice(index, 1);
+                renderPhoneNumbers();
+            };
+            
+            // Fungsi untuk mengirim pesan
+            function sendMessage() {
+                if (phoneNumbers.length === 0) {
+                    alert('Harap masukkan minimal satu nomor telepon');
+                    return;
+                }
+                
+                if (!messageInput.value.trim()) {
+                    alert('Harap masukkan pesan yang ingin dikirim');
+                    return;
+                }
+                
+                const message = encodeURIComponent(messageInput.value.trim());
+                
+                // Mengirim ke setiap nomor telepon
+                phoneNumbers.forEach(phoneNumber => {
+                    // Format nomor untuk WhatsApp (hapus karakter non-digit)
+                    const formattedPhone = phoneNumber.replace(/\D/g, '');
+                    const url = `https://wa.me/${formattedPhone}?text=${message}`;
+                    window.open(url, '_blank');
+                });
+                
+                // Reset form setelah mengirim
+                phoneNumbers = [];
+                renderPhoneNumbers();
+                messageInput.value = '';
+            }
+            
+            // Event listeners
+            addNumberBtn.addEventListener('click', addPhoneNumber);
+            
+            phoneInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addPhoneNumber();
+                }
+            });
+            
+            sendBtn.addEventListener('click', sendMessage);
+        });
+    </script>
+</body>
+</html>
